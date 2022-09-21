@@ -1,6 +1,7 @@
 package com.example.probandoerrores.logins
 
 import android.os.Bundle
+import android.os.FileUtils.copy
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -27,6 +28,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.probandoerrores.R
 import com.example.probandoerrores.navigation.AppScreens
+import java.nio.file.Files.copy
+import java.util.Collections.copy
 
 @Composable
 fun LoginUI(navController: NavController){
@@ -77,6 +80,10 @@ fun LoginUIBodyContent(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, top = 10.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            ),
             shape = RoundedCornerShape(30.dp),
         )
 
@@ -92,17 +99,24 @@ fun LoginUIBodyContent(navController: NavController) {
                 .padding(bottom = 10.dp, top = 10.dp),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         TextButton(
             onClick = {
                 navController.navigate(route = AppScreens.ForgetPassword.route)
             },
             colors = ButtonDefaults.textButtonColors(
-                contentColor = Color(0xFFA09F9F)
-            )
+                contentColor = Color(0xFFFFFFFF)
+            ),
+            modifier = Modifier.padding(end = 200.dp)
         ) {
-            Text("Forget Password")
+            Text("Forget Password",
+                color = Color.Gray,
+                fontFamily = FontFamily.Default,)
         }
 //        Text(onClick = {
 //                navController.navigate(route = AppScreens.MainScreen.route)
@@ -154,14 +168,24 @@ fun LoginUIBodyContent(navController: NavController) {
             modifier = Modifier.padding(top = 10.dp)
         ) {
             Text(
-                text = "Don't have an Account? ",
-                fontSize = 18.sp
+                text = "Don't have an Account?",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(top = 13.dp)
             )
-            Text(
-                text = "Sign In",
-                fontSize = 18.sp,
-                color = Color.Blue
-            )
+            TextButton(
+                onClick = {
+                    navController.navigate(route = AppScreens.SignUp.route)
+                },
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = Color(0xFFFFFFFF)
+                )
+            ) {
+                Text("Sign Up",
+                    color = Color.Red,
+                    fontFamily = FontFamily.Default,
+                    fontSize = 16.sp
+                )
+            }
         }
 
 

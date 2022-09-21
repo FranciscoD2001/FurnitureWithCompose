@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.probandoerrores.R
+import com.example.probandoerrores.navigation.AppScreens
 
 @Composable
 fun CreateAccountUI(navController: NavController){
@@ -117,7 +118,9 @@ fun CreateAccountUIBodyContent(navController: NavController){
             shape = RoundedCornerShape(30.dp)
         )
         Button(
-            onClick = {}, shape = RoundedCornerShape(50),
+            onClick = {
+                navController.navigate(route = AppScreens.ScreenTutorial.route)
+            }, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
                 .size(60.dp)
@@ -128,7 +131,9 @@ fun CreateAccountUIBodyContent(navController: NavController){
         }
 
         Button(
-            onClick = {}, shape = RoundedCornerShape(50),
+            onClick = {
+                navController.navigate(route = AppScreens.ScreenTutorial.route)
+            }, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
                 .size(60.dp)
@@ -144,6 +149,30 @@ fun CreateAccountUIBodyContent(navController: NavController){
                 text = "  Sign In with Google",
                 color = Color.White
             )
+        }
+
+        Row(
+            modifier = Modifier.padding(top = 10.dp)
+        ) {
+            Text(
+                text = "You have an Account?",
+                fontSize = 16.sp,
+                modifier = Modifier.padding(top = 13.dp)
+            )
+            TextButton(
+                onClick = {
+                    navController.navigate(route = AppScreens.LogIn.route)
+                },
+                colors = ButtonDefaults.textButtonColors(
+                    contentColor = Color(0xFFFFFFFF)
+                )
+            ) {
+                Text("Sign In",
+                    color = Color.Red,
+                    fontFamily = FontFamily.Default,
+                    fontSize = 16.sp
+                )
+            }
         }
 
 

@@ -25,7 +25,7 @@ fun BottomNavGraph(navController: NavHostController) {
             CartScreen()
         }
         composable(route = BottomBarScreen.Account.route) {
-            AccountScreen()
+            AccountScreen(navController)
         }
     }
 }

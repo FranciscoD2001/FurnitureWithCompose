@@ -24,8 +24,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-@Composable
-@Preview
-fun MainActivityPreview() {
-    MainScreen()
-}
+//@Composable
+//@Preview
+//fun MainActivityPreview() {
+//    MainScreen()
+//}

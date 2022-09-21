@@ -40,7 +40,7 @@ fun ViewPagerSlider(){
 
     val pagerState  = rememberPagerState(
         pageCount = tutorialList.size,
-        initialPage =  2
+        initialPage =  0
     )
 
     LaunchedEffect(Unit){
