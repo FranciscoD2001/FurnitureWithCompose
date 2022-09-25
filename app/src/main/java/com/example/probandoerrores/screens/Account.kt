@@ -16,10 +16,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.probandoerrores.navigation.AppScreens
 import androidx.navigation.NavController
-
+import com.example.probandoerrores.logins.LoginUIBodyContent
 
 @Composable
-fun AccountScreen(navController: NavController) {
+fun AccountUI(navController: NavController){
+    Scaffold() {
+        AccountUIBodyContent(navController)
+    }
+}
+
+@Composable
+fun AccountUIBodyContent(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()

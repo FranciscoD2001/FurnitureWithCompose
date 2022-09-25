@@ -13,7 +13,7 @@ fun BottomNavGraph(navController: NavHostController) {
         startDestination = BottomBarScreen.Home.route
     ) {
         composable(route = BottomBarScreen.Home.route) {
-            HomeScreen()
+            HomeUI(navController)
         }
         composable(route = BottomBarScreen.Favorites.route) {
             FavoritesScreen()
@@ -22,10 +22,10 @@ fun BottomNavGraph(navController: NavHostController) {
             ExploreScreen()
         }
         composable(route = BottomBarScreen.Cart.route) {
-            CartScreen()
+            CartUI(navController)
         }
         composable(route = BottomBarScreen.Account.route) {
-            AccountScreen(navController)
+            AccountUI(navController)
         }
     }
 }
