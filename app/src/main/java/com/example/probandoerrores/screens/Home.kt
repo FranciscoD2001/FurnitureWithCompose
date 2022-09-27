@@ -1,14 +1,10 @@
 package com.example.probandoerrores.screens
 
-import android.icu.text.CaseMap
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.ScrollableState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.ContentAlpha.medium
@@ -22,45 +18,74 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset.Companion.Unspecified
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.DarkGray
-import androidx.compose.ui.graphics.Color.Companion.LightGray
-import androidx.compose.ui.graphics.Color.Companion.Transparent
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.probandoerrores.Products
 import com.example.probandoerrores.R
 import com.example.probandoerrores.getAllCategories
 
 
-//data class Product(
-//    @DrawableRes val imageResource: Int,
-//    val title: String,
-//    val price: Int
-//)
-//
-//@Composable
-//fun ProductCard(product: Product){
-//   val image = imageResource(R.drawable.tablebentley)
-//    Surface(
-//        shape = RoundedCornerShape(8.dp),
-//        elevation = 8.dp,
-//        modifier = Modifier.padding(8.dp)
-//    ) {
-//        Column(
-//            modifier = Modifier.padding(16.dp)
-//        ) {
-//            val imageModifier = arrayOf(
-//                Modifier
-//                    .preferredHeight(75.dp)
-//                    .fillMaxWidth()
-//                    .clip(shape = )
-//        }
-//    }
-//}
+data class Product(
+    val title: String,
+    @DrawableRes val imageResource: Int,
+    val price: Double
+)
+
+private val listProducts = listOf(
+    Product("Footstool", R.drawable.footstool, 2999.99),
+    Product("Table bentley", R.drawable.tablebentley, 849.50),
+    Product("Astrid table", R.drawable.astridtable, 1500.00),
+    Product("Sofa", R.drawable.sofablanco, 900.00),
+    Product("Log Island Sofa", R.drawable.logislandsofa, 2999.99),
+    Product("Ous bourne", R.drawable.ousbourne, 849.50),
+    Product("Bardot table", R.drawable.bardottable, 1500.00),
+    Product("Ringo Storage", R.drawable.ringostorage, 900.00)
+)
+
+@Composable
+fun ProductStyle(product: Product){
+    Card(
+        shape = RoundedCornerShape(10.dp),
+        elevation = 8.dp,
+        modifier = Modifier
+            .height(250.dp)
+            .width(175.dp),
+        backgroundColor = Color(0xFFF8F4F4)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Image(
+                painter = painterResource(id = product.imageResource),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp)
+                    .clip(RoundedCornerShape(10.dp))
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = product.title,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = "$${product.price}",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black
+            )
+        }
+    }
+}
 
 @Composable
 fun HomeUI(navController:NavController) {
@@ -69,31 +94,40 @@ fun HomeUI(navController:NavController) {
     }
 }
 
+
 @Composable
 fun HomeUIBodyContent(navController: NavController){
-    Column(
+    LazyColumn(
+        contentPadding = PaddingValues(16.dp),
+        verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier
             .fillMaxWidth()
             .padding(20.dp)
             .padding(top = 25.dp),
-        verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Card(
-            shape = RoundedCornerShape(10.dp),
-            backgroundColor = Color(0xFFFFC5B3),
-            modifier = Modifier
-                .height(200.dp)
-
-        ){
-            Image(
-                painter = painterResource(R.drawable.cuponhome),
-                contentDescription = null,
+        item {
+            Card(
+                shape = RoundedCornerShape(10.dp),
+                backgroundColor = Color(0xFFFFC5B3),
                 modifier = Modifier
-                    .size(300.dp)
-            )
+                    .height(206.dp)
+
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.cuponhome),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(305.dp)
+                )
+            }
         }
-        ChipSection(chips = listOf("Trending Now", "Sofa", "Table", "Chairs", "Beds", "New Arrivals"))
+        item{
+            ChipSection(chips = listOf("Trending Now", "Sofa", "Table", "Chairs", "Beds", "New Arrivals"))
+        }
+        items(listProducts) {
+            ProductStyle(product = it)
+        }
 
     }
 }
@@ -133,8 +167,6 @@ fun ChipSection(
         }
     }
 }
-
-
 
 //@Composable
 //@Preview
