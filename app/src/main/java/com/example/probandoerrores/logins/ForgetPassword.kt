@@ -3,10 +3,7 @@ package com.example.probandoerrores.logins
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.R
 import androidx.compose.ui.Alignment
@@ -76,13 +73,18 @@ fun ForgetPasswordBodyContent(){
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, top = 10.dp),
             shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
                 .size(60.dp)
-                .padding(top = 10.dp)
+                .padding(top = 10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFF5722))
 
         ) {
             Text(text = "Submit")

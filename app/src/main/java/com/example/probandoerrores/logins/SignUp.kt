@@ -77,7 +77,11 @@ fun CreateAccountUIBodyContent(navController: NavController){
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, top = 10.dp),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         OutlinedTextField(
             value = email,
@@ -89,7 +93,11 @@ fun CreateAccountUIBodyContent(navController: NavController){
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, top = 10.dp),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         OutlinedTextField(
             value = phone,
@@ -101,7 +109,11 @@ fun CreateAccountUIBodyContent(navController: NavController){
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, top = 10.dp),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         OutlinedTextField(
             value = password,
@@ -115,7 +127,11 @@ fun CreateAccountUIBodyContent(navController: NavController){
                 .padding(bottom = 10.dp, top = 10.dp),
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            shape = RoundedCornerShape(30.dp)
+            shape = RoundedCornerShape(30.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                textColor = Color.Black,
+                backgroundColor = Color(0xFFF3F3F3)
+            )
         )
         Button(
             onClick = {
@@ -124,7 +140,8 @@ fun CreateAccountUIBodyContent(navController: NavController){
             modifier = Modifier
                 .fillMaxWidth()
                 .size(60.dp)
-                .padding(top = 10.dp)
+                .padding(top = 10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFF5722))
 
         ) {
             Text(text = "Sign Up")
@@ -157,7 +174,8 @@ fun CreateAccountUIBodyContent(navController: NavController){
             Text(
                 text = "You have an Account?",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(top = 13.dp)
+                modifier = Modifier.padding(top = 13.dp),
+                color = Color.Black
             )
             TextButton(
                 onClick = {

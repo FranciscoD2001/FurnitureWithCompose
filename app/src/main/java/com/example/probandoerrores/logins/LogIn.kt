@@ -118,18 +118,6 @@ fun LoginUIBodyContent(navController: NavController) {
                 color = Color.Gray,
                 fontFamily = FontFamily.Default,)
         }
-//        Text(onClick = {
-//                navController.navigate(route = AppScreens.MainScreen.route)
-//            },
-//            text = "Forget Password?",
-//            fontFamily = FontFamily.Default,
-//            textAlign = TextAlign.Left,
-//            fontSize = 12.sp,
-//            color = Color.Gray,
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 20.dp)
-//        )
         Button(
             onClick = {
                 navController.navigate(route = AppScreens.MainScreen.route)
@@ -137,7 +125,8 @@ fun LoginUIBodyContent(navController: NavController) {
             modifier = Modifier
                 .fillMaxWidth()
                 .size(60.dp)
-                .padding(top = 10.dp)
+                .padding(top = 10.dp),
+            colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFFFF5722))
 
         ) {
             Text(text = "Sign Up")
@@ -170,7 +159,8 @@ fun LoginUIBodyContent(navController: NavController) {
             Text(
                 text = "Don't have an Account?",
                 fontSize = 16.sp,
-                modifier = Modifier.padding(top = 13.dp)
+                modifier = Modifier.padding(top = 13.dp),
+                color = Color.Black
             )
             TextButton(
                 onClick = {

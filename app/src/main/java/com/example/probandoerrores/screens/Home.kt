@@ -8,11 +8,10 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.ContentAlpha.medium
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,6 +19,7 @@ import androidx.compose.ui.geometry.Offset.Companion.Unspecified
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,26 +28,57 @@ import com.example.probandoerrores.Products
 import com.example.probandoerrores.R
 import com.example.probandoerrores.getAllCategories
 
+@Composable
+internal fun CenterAlignedTopAppBar() {
+    TopAppBar {
+        CompositionLocalProvider(
+            LocalContentAlpha provides ContentAlpha.high
+        ) {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.Menu,
+                    contentDescription = "Abrir menu",
+                    tint = Color(0xFF000000)
+                )
+            }
+        }
 
-data class Product(
-    val title: String,
-    @DrawableRes val imageResource: Int,
-    val price: Double
-)
+        CompositionLocalProvider(
+            LocalContentAlpha provides ContentAlpha.high,
+            LocalTextStyle provides MaterialTheme.typography.h6
+        ) {
+            Text(
+                text = "Home",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                color = Color(0xFF000000)
+            )
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                imageVector = Icons.Filled.Settings,
+                contentDescription = "Ajustes",
+                tint = Color(0xFF000000)
+            )
+        }
+    }
+}
 
 private val listProducts = listOf(
-    Product("Footstool", R.drawable.footstool, 2999.99),
-    Product("Table bentley", R.drawable.tablebentley, 849.50),
-    Product("Astrid table", R.drawable.astridtable, 1500.00),
-    Product("Sofa", R.drawable.sofablanco, 900.00),
-    Product("Log Island Sofa", R.drawable.logislandsofa, 2999.99),
-    Product("Ous bourne", R.drawable.ousbourne, 849.50),
-    Product("Bardot table", R.drawable.bardottable, 1500.00),
-    Product("Ringo Storage", R.drawable.ringostorage, 900.00)
+    Products("Footstool", R.drawable.footstool, 2999.99),
+    Products("Table bentley", R.drawable.tablebentley, 849.50),
+    Products("Astrid table", R.drawable.astridtable, 1500.00),
+    Products("Sofa", R.drawable.sofablanco, 900.00),
+    Products("Log Island Sofa", R.drawable.logislandsofa, 2999.99),
+    Products("Ous bourne", R.drawable.ousbourne, 849.50),
+    Products("Bardot table", R.drawable.bardottable, 1500.00),
+    Products("Ringo Storage", R.drawable.ringostorage, 900.00)
 )
 
 @Composable
-fun ProductStyle(product: Product){
+fun ProductStyle(product: Products){
     Card(
         shape = RoundedCornerShape(10.dp),
         elevation = 8.dp,
@@ -90,6 +121,7 @@ fun ProductStyle(product: Product){
 @Composable
 fun HomeUI(navController:NavController) {
     Scaffold() {
+        CenterAlignedTopAppBar()
         HomeUIBodyContent(navController)
     }
 }
@@ -102,8 +134,7 @@ fun HomeUIBodyContent(navController: NavController){
         verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(20.dp)
-            .padding(top = 25.dp),
+            .padding(top = 56.dp, bottom = 56.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         item {
@@ -121,8 +152,6 @@ fun HomeUIBodyContent(navController: NavController){
                         .size(305.dp)
                 )
             }
-        }
-        item{
             ChipSection(chips = listOf("Trending Now", "Sofa", "Table", "Chairs", "Beds", "New Arrivals"))
         }
         items(listProducts) {
@@ -153,7 +182,9 @@ fun ChipSection(
                         if (selectedChipIndex == it) Color(0xFFFF5722)
                         else Color(0xFFDFDFDF)
                     )
-                    .padding(15.dp)
+
+                    .padding(20.dp, 10.dp)
+                           //WIDTH | HEIGHT
             ){
                 Text(
                     text = chips[it],
