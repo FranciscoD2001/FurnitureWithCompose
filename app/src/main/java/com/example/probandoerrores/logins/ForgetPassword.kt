@@ -35,10 +35,6 @@ fun ForgetPasswordBodyContent(){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-//        Image(
-//            painterResource(id = com.example.probandoerrores.R.drawable.get_password_foreground),
-//            contentDescription ="",
-//        )
         Image(
             painter = painterResource(com.example.probandoerrores.R.drawable.get_password_foreground),
             contentDescription = null,
@@ -75,7 +71,10 @@ fun ForgetPasswordBodyContent(){
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
+                backgroundColor = Color(0xFFF3F3F3),
+                cursorColor = Color(0xFFF4511E),
+                focusedIndicatorColor = Color(0xFFF4511E),
+                unfocusedIndicatorColor = Color(0xFFF3F3F3)
             )
         )
         Button(
@@ -91,3 +90,4 @@ fun ForgetPasswordBodyContent(){
         }
     }
 }
+

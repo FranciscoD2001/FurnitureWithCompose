@@ -9,13 +9,17 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.probandoerrores.navigation.AppScreens
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.probandoerrores.R
 import com.example.probandoerrores.logins.LoginUIBodyContent
 
 @Composable
@@ -54,7 +58,8 @@ fun AccountUIBodyContent(navController: NavController) {
             {
                 Text(
                     text = "Francisco Diaz",
-                    fontSize = 28.sp
+                    fontSize = 28.sp,
+                    color = Color.Black,
                 )
                 Text(
                     text = "Edit Account",
@@ -79,16 +84,15 @@ fun AccountUIBodyContent(navController: NavController) {
 
         ) {
             Icon(
-                imageVector = Icons.Default.Person,
+                painter = painterResource(id = R.drawable.person_outline),
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp),
-                tint = Color(0xFF00FF0A)
+                tint = Color(0xFF1FAD28)
             )
-//                Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-
             Text(text = "My Account",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -110,16 +114,15 @@ fun AccountUIBodyContent(navController: NavController) {
 
         ) {
             Icon(
-                imageVector = Icons.Default.Person,
+                painter = painterResource(id = R.drawable.payment),
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp),
-                tint = Color(0xFFFF5722)
+                tint = Color(0xFFFF7700)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-
             Text(text = "Payment",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -147,10 +150,9 @@ fun AccountUIBodyContent(navController: NavController) {
                     .size(40.dp),
                 tint = Color(0xFF03A9F4)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-
             Text(text = "My address",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -172,16 +174,15 @@ fun AccountUIBodyContent(navController: NavController) {
 
         ) {
             Icon(
-                imageVector = Icons.Default.ShoppingCart,
+                painter = painterResource(id = R.drawable.transactions),
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp),
                 tint = Color(0xFFFF5722)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-
             Text(text = "Transactions",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -203,16 +204,15 @@ fun AccountUIBodyContent(navController: NavController) {
 
         ) {
             Icon(
-                imageVector = Icons.Default.Notifications,
+                painter = painterResource(id = R.drawable.notifications_base_line),
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp),
-                tint = Color.Blue
+                tint = Color(0xFF052881)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
-
             Text(text = "Notification",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -238,10 +238,11 @@ fun AccountUIBodyContent(navController: NavController) {
                     .size(40.dp),
                 tint = Color(0xFF673AB7)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+//            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
             Text(text = "Setting",
-                fontSize = 16.sp)
+                fontSize = 16.sp,
+                color = Color(0xFF000000))
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -264,16 +265,18 @@ fun AccountUIBodyContent(navController: NavController) {
 
         ) {
             Icon(
-                imageVector = Icons.Default.Share,
+                painter = painterResource(id = R.drawable.map),
                 contentDescription = null,
                 modifier = Modifier
                     .size(40.dp),
-                tint = Color(0xFF166619)
+                tint = Color(0xFF088010)
             )
-            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+//            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
 
             Text(text = "Live Showroom",
-            fontSize = 16.sp)
+            fontSize = 16.sp,
+            color = Color(0xFF000000)
+            )
 
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
@@ -317,8 +320,8 @@ fun AccountUIBodyContent(navController: NavController) {
 
     }
 }
-//@Composable
-//@Preview
-//fun AccountScreenPreview() {
-//    AccountScreen(navController: NavController)
-//}
+@Composable
+@Preview
+fun AccountScreenPreview() {
+    AccountUI(navController = rememberNavController())
+}

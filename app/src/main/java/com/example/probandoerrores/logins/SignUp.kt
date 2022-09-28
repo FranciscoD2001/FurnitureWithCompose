@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -80,7 +81,10 @@ fun CreateAccountUIBodyContent(navController: NavController){
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
+                backgroundColor = Color(0xFFF3F3F3),
+                cursorColor = Color(0xFFF4511E),
+                focusedIndicatorColor = Color(0xFFF4511E),
+                unfocusedIndicatorColor = Color(0xFFF3F3F3)
             )
         )
         OutlinedTextField(
@@ -96,8 +100,12 @@ fun CreateAccountUIBodyContent(navController: NavController){
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
+                backgroundColor = Color(0xFFF3F3F3),
+                cursorColor = Color(0xFFF4511E),
+                focusedIndicatorColor = Color(0xFFF4511E),
+                unfocusedIndicatorColor = Color(0xFFF3F3F3)
             )
+
         )
         OutlinedTextField(
             value = phone,
@@ -112,27 +120,34 @@ fun CreateAccountUIBodyContent(navController: NavController){
             shape = RoundedCornerShape(30.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
+                backgroundColor = Color(0xFFF3F3F3),
+                cursorColor = Color(0xFFF4511E),
+                focusedIndicatorColor = Color(0xFFF4511E),
+                unfocusedIndicatorColor = Color(0xFFF3F3F3)
             )
         )
-        OutlinedTextField(
-            value = password,
-            onValueChange = {password = it},
-            label = { Text("Enter your password")},
-            leadingIcon = {
-                Icon(Icons.Default.Lock, contentDescription = "password")
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 10.dp, top = 10.dp),
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            shape = RoundedCornerShape(30.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
-            )
-        )
+//        OutlinedTextField(
+//            value = password,
+//            onValueChange = {password = it},
+//            label = { Text("Enter your password")},
+//            leadingIcon = {
+//                Icon(Icons.Default.Lock, contentDescription = "password")
+//            },
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(bottom = 10.dp, top = 10.dp),
+//            visualTransformation = PasswordVisualTransformation(),
+//            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+//            shape = RoundedCornerShape(30.dp),
+//            colors = TextFieldDefaults.textFieldColors(
+//                textColor = Color.Black,
+//                backgroundColor = Color(0xFFF3F3F3),
+//                cursorColor = Color(0xFFF4511E),
+//                focusedIndicatorColor = Color(0xFFF4511E),
+//                unfocusedIndicatorColor = Color(0xFFF3F3F3)
+//            )
+//        )
+        PasswordTextField()
         Button(
             onClick = {
                 navController.navigate(route = AppScreens.ScreenTutorial.route)
@@ -147,26 +162,7 @@ fun CreateAccountUIBodyContent(navController: NavController){
             Text(text = "Sign Up")
         }
 
-        Button(
-            onClick = {
-                navController.navigate(route = AppScreens.ScreenTutorial.route)
-            }, shape = RoundedCornerShape(50),
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(60.dp)
-                .padding(top = 10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
-        ){
-            Image(
-                painterResource(id = R.drawable.logo_google),
-                contentDescription ="",
-                modifier = Modifier.size(25.dp)
-            )
-            Text(
-                text = "  Sign In with Google",
-                color = Color.White
-            )
-        }
+        ButtonGoogle(navController)
 
         Row(
             modifier = Modifier.padding(top = 10.dp)
@@ -203,3 +199,66 @@ fun CreateAccountUIBodyContent(navController: NavController){
 //    CreateAccountUI()
 //}
 
+@Composable
+fun PasswordTextField() {
+    var password by remember { mutableStateOf("") }
+    var hidden by remember { mutableStateOf(true) } //1
+
+    OutlinedTextField(
+        value = password,
+        onValueChange = { password = it },
+        label = { Text("Enter your password") },
+        leadingIcon = {
+            Icon(Icons.Default.Lock, contentDescription = "password")
+        },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),//2
+        singleLine = true,
+        visualTransformation =
+        if (hidden) PasswordVisualTransformation() else VisualTransformation.None,//3
+        trailingIcon = {// 4
+            IconButton(onClick = { hidden = !hidden }) {
+                val vector = painterResource(//5
+                    if (hidden) R.drawable.ic_baseline_visibility_24
+                    else R.drawable.ic_baseline_visibility_off_24
+                )
+                val description = if (hidden) "Ocultar contraseña" else "Revelar contraseña" //6
+                Icon(painter = vector, contentDescription = description)
+            }
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 10.dp, top = 10.dp),
+        shape = RoundedCornerShape(30.dp),
+        colors = TextFieldDefaults.textFieldColors(
+            textColor = Color.Black,
+            backgroundColor = Color(0xFFF3F3F3),
+            cursorColor = Color(0xFFF4511E),
+            focusedIndicatorColor = Color(0xFFF4511E),
+            unfocusedIndicatorColor = Color(0xFFF3F3F3)
+        )
+    )
+}
+
+@Composable
+fun ButtonGoogle(navController: NavController){
+    Button(
+        onClick = {
+            navController.navigate(route = AppScreens.ScreenTutorial.route)
+        }, shape = RoundedCornerShape(50),
+        modifier = Modifier
+            .fillMaxWidth()
+            .size(60.dp)
+            .padding(top = 10.dp),
+        colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
+    ){
+        Image(
+            painterResource(id = R.drawable.logo_google),
+            contentDescription ="",
+            modifier = Modifier.size(25.dp)
+        )
+        Text(
+            text = "  Sign In with Google",
+            color = Color.White
+        )
+    }
+}

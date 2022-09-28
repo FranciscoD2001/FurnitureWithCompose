@@ -82,29 +82,16 @@ fun LoginUIBodyContent(navController: NavController) {
                 .padding(bottom = 10.dp, top = 10.dp),
             colors = TextFieldDefaults.textFieldColors(
                 textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
+                backgroundColor = Color(0xFFF3F3F3),
+                cursorColor = Color(0xFFF4511E),
+                focusedIndicatorColor = Color(0xFFF4511E),
+                unfocusedIndicatorColor = Color(0xFFF3F3F3)
             ),
             shape = RoundedCornerShape(30.dp),
         )
 
-        OutlinedTextField(
-            value = password,
-            onValueChange = {password = it},
-            label = { Text("Enter your password")},
-            leadingIcon = {
-                Icon(Icons.Default.Lock, contentDescription = "password")
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 10.dp, top = 10.dp),
-            visualTransformation = PasswordVisualTransformation(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            shape = RoundedCornerShape(30.dp),
-            colors = TextFieldDefaults.textFieldColors(
-                textColor = Color.Black,
-                backgroundColor = Color(0xFFF3F3F3)
-            )
-        )
+        PasswordTextField()
+
         TextButton(
             onClick = {
                 navController.navigate(route = AppScreens.ForgetPassword.route)
@@ -131,27 +118,8 @@ fun LoginUIBodyContent(navController: NavController) {
         ) {
             Text(text = "Sign Up")
         }
-        Button(
-            onClick = {
-                navController.navigate(route = AppScreens.MainScreen.route)
-            }, shape = RoundedCornerShape(50),
-            modifier = Modifier
-                .fillMaxWidth()
-                .size(60.dp)
-                .padding(top = 10.dp),
-            colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
-        ) {
 
-            Image(
-                painterResource(id = R.drawable.logo_google),
-                contentDescription ="",
-                modifier = Modifier.size(25.dp),
-            )
-            Text(
-                text = "  Sign In with Google",
-                color = Color.White
-                )
-        }
+        ButtonGoogle(navController)
 
         Row(
             modifier = Modifier.padding(top = 10.dp)
