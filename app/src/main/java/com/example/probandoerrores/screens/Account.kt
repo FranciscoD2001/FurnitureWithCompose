@@ -2,17 +2,21 @@ package com.example.probandoerrores.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,8 +27,39 @@ import com.example.probandoerrores.R
 import com.example.probandoerrores.logins.LoginUIBodyContent
 
 @Composable
+internal fun AccountTopAppBar() {
+    TopAppBar {
+        CompositionLocalProvider(
+            LocalContentAlpha provides ContentAlpha.high
+        ) {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = Color(0xFF000000)
+                )
+            }
+        }
+        CompositionLocalProvider(
+            LocalContentAlpha provides ContentAlpha.high,
+            LocalTextStyle provides MaterialTheme.typography.h6
+        ) {
+            Text(
+                text = "Account",
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                color = Color(0xFF000000)
+            )
+        }
+    }
+}
+
+@Composable
 fun AccountUI(navController: NavController){
-    Scaffold() {
+    Scaffold {
+        AccountTopAppBar()
         AccountUIBodyContent(navController)
     }
 }
@@ -34,7 +69,8 @@ fun AccountUIBodyContent(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(25.dp).padding(top = 50.dp),
+            .padding(25.dp)
+            .padding(top = 50.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -46,6 +82,7 @@ fun AccountUIBodyContent(navController: NavController) {
                 imageVector = Icons.Default.Person,
                 contentDescription = null,
                 modifier = Modifier
+                    .clip(CircleShape)
                     .size(70.dp)
                     .background(Color.LightGray)
             )
@@ -67,7 +104,7 @@ fun AccountUIBodyContent(navController: NavController) {
                     color = Color(0xFFFF5722),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 15.dp)
+                        .padding(top = 10.dp)
                 )
             }
         }
@@ -76,10 +113,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(80.dp)
+                .padding(top = 25.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFE1E1E1)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -106,10 +143,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(75.dp)
+                .padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFE1E1E1)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -136,10 +173,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(75.dp)
+                .padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFDFDFDF)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -166,10 +203,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(75.dp)
+                .padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFDFDFDF)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -196,10 +233,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(75.dp)
+                .padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFDFDFDF)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -226,9 +263,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFDFDFDF)
+                .size(75.dp)
+                .padding(top = 20.dp),
+            colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFFFAF7F7)
             )
         ) {
             Icon(
@@ -257,10 +295,10 @@ fun AccountUIBodyContent(navController: NavController) {
             onClick = {}, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .fillMaxWidth()
-                .size(70.dp)
-                .padding(top = 10.dp),
+                .size(75.dp)
+                .padding(top = 20.dp),
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color(0xFFDFDFDF)
+                backgroundColor = Color(0xFFFAF7F7)
             )
 
         ) {
@@ -293,8 +331,8 @@ fun AccountUIBodyContent(navController: NavController) {
             }, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .width(150.dp)
-                .size(50.dp)
-                .padding(top = 10.dp),
+                .size(60.dp)
+                .padding(top = 15.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(0xFFFFBFAB)
             )

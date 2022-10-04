@@ -1,5 +1,6 @@
 package com.example.probandoerrores.screens
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,8 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,7 +35,7 @@ internal fun ExploreTopAppBar() {
         ) {
             IconButton(onClick = { /*TODO*/ }) {
                 Icon(
-                    imageVector = Icons.Filled.Menu,
+                    imageVector = Icons.Default.Menu,
                     contentDescription = "Abrir menu",
                     tint = Color(0xFF000000)
                 )
@@ -57,24 +57,20 @@ internal fun ExploreTopAppBar() {
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
-                imageVector = Icons.Filled.Settings,
+                painter = painterResource(id = R.drawable.fullscreen),
                 contentDescription = "Ajustes",
+                tint = Color(0xFF000000)
+            )
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                imageVector = Icons.Default.Tune,
+                contentDescription = "Abrir menu",
                 tint = Color(0xFF000000)
             )
         }
     }
 }
-
-private val listProducts = listOf(
-    Products("Footstool", R.drawable.footstool, 2999.99),
-    Products("Table bentley", R.drawable.tablebentley, 849.50),
-    Products("Astrid table", R.drawable.astridtable, 1500.00),
-    Products("Sofa", R.drawable.sofablanco, 900.00),
-    Products("Log Island Sofa", R.drawable.logislandsofa, 2999.99),
-    Products("Ous bourne", R.drawable.ousbourne, 849.50),
-    Products("Bardot table", R.drawable.bardottable, 1500.00),
-    Products("Ringo Storage", R.drawable.ringostorage, 900.00)
-)
 
 @Composable
 fun ExploreUI(navController: NavController) {
@@ -85,28 +81,21 @@ fun ExploreUI(navController: NavController) {
 }
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ExploreUIBodyContent(navController: NavController){
-    LazyColumn(
-        contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
+    Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 56.dp, bottom = 56.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        item {
-            ChipSection(chips = listOf("Categories", "Explore", "New Arrivals"))
-        }
-        items(listProducts) {
-            ProductStyle(product = it)
-        }
-
+            .padding(top = 45.dp, bottom = 45.dp)
+    ){
+        ChipSection(chips = listOf("Categories", "Explore", "New Arrivals", "Categories", "Explore", "New Arrivals"))
+        ListProductsGrid()
     }
 }
 
-//@Composable
-//@Preview
-//fun ExploreScreenPreview() {
-//    ExploreScreen()
-//}
+@Composable
+@Preview
+fun ExploreScreenPreview() {
+    ExploreTopAppBar()
+}

@@ -22,7 +22,7 @@ fun BottomNavGraph(navController: NavHostController) {
             ExploreUI(navController)
         }
         composable(route = BottomBarScreen.Cart.route) {
-            CartUI(navController)
+            CartUI()
         }
         composable(route = BottomBarScreen.Account.route) {
             AccountUI(navController)

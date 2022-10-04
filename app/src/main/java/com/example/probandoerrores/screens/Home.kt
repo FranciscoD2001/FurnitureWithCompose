@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset.Companion.Unspecified
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -58,7 +59,14 @@ internal fun CenterAlignedTopAppBar() {
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
-                imageVector = Icons.Filled.Settings,
+                painter = painterResource(id = R.drawable.fullscreen),
+                contentDescription = "Ajustes",
+                tint = Color(0xFF000000)
+            )
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                painter = painterResource(id = R.drawable.search),
                 contentDescription = "Ajustes",
                 tint = Color(0xFF000000)
             )
@@ -84,7 +92,7 @@ fun ProductStyle(product: Products){
         elevation = 8.dp,
         modifier = Modifier
             .height(250.dp)
-            .width(175.dp),
+            .width(150.dp),
         backgroundColor = Color(0xFFF8F4F4)
     ) {
         Column(
@@ -126,7 +134,7 @@ fun HomeUI(navController:NavController) {
     }
 }
 
-
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeUIBodyContent(navController: NavController){
     LazyColumn(
@@ -134,8 +142,7 @@ fun HomeUIBodyContent(navController: NavController){
         verticalArrangement = Arrangement.spacedBy(20.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 56.dp, bottom = 56.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(top = 56.dp, bottom = 56.dp)
     ) {
         item {
             Card(
@@ -153,8 +160,15 @@ fun HomeUIBodyContent(navController: NavController){
                 )
             }
             ChipSection(chips = listOf("Trending Now", "Sofa", "Table", "Chairs", "Beds", "New Arrivals"))
+//            Column() {
+//                ListProductsGrid()
+//            }
         }
-        items(listProducts) {
+
+        items(
+            listProducts,
+
+            ) {
             ProductStyle(product = it)
         }
 
@@ -195,6 +209,24 @@ fun ChipSection(
                     fontSize = 14.sp
                 )
             }
+        }
+    }
+}
+
+
+@ExperimentalFoundationApi
+@Composable
+fun ListProductsGrid(){
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(2),
+        contentPadding = PaddingValues(12.dp),
+        verticalArrangement = Arrangement.spacedBy(25.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(10.dp)
+    ) {
+        items(listProducts) {
+            ProductStyle(product = it)
         }
     }
 }

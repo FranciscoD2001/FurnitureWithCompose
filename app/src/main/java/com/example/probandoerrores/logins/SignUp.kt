@@ -243,7 +243,7 @@ fun PasswordTextField() {
 fun ButtonGoogle(navController: NavController){
     Button(
         onClick = {
-            navController.navigate(route = AppScreens.ScreenTutorial.route)
+            navController.navigate(route = AppScreens.MainScreen.route)
         }, shape = RoundedCornerShape(50),
         modifier = Modifier
             .fillMaxWidth()

@@ -1,5 +1,6 @@
 package com.example.probandoerrores.logins
 
+import android.accounts.Account
 import android.os.Bundle
 import android.os.FileUtils.copy
 import androidx.activity.ComponentActivity
@@ -11,8 +12,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
-import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -33,7 +33,7 @@ import java.util.Collections.copy
 
 @Composable
 fun LoginUI(navController: NavController){
-    Scaffold() {
+    Scaffold {
         LoginUIBodyContent(navController)
     }
 }
