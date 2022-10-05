@@ -23,7 +23,7 @@ fun AppNavigation(){
             SplashScreen(navController)
         }
         composable(AppScreens.MainScreen.route){
-            MainScreen()
+            MainScreen(navController)
         }
         composable(AppScreens.LogIn.route){
             LoginUI(navController)

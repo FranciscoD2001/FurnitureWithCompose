@@ -327,7 +327,11 @@ fun AccountUIBodyContent(navController: NavController) {
 
         Button(
             onClick = {
-                navController.navigate(route = AppScreens.SignUp.route)
+                navController.navigate(route = AppScreens.SignUp.route){
+                    popUpTo(AppScreens.SignUp.route){
+                        inclusive = true
+                    }
+                }
             }, shape = RoundedCornerShape(50),
             modifier = Modifier
                 .width(150.dp)

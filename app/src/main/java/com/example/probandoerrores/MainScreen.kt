@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight.Companion.Black
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -26,7 +27,7 @@ import com.example.probandoerrores.BottomNavGraph
 
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
