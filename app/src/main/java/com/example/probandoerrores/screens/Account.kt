@@ -131,13 +131,17 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -161,13 +165,18 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -191,13 +200,18 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -221,13 +235,18 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -251,13 +270,18 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -282,14 +306,19 @@ fun AccountUIBodyContent(navController: NavController) {
                 fontSize = 16.sp,
                 color = Color(0xFF000000))
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
 
-            )
+                )
+            }
+
         }
         Button(
             onClick = {}, shape = RoundedCornerShape(50),
@@ -316,13 +345,18 @@ fun AccountUIBodyContent(navController: NavController) {
             color = Color(0xFF000000)
             )
 
-            Icon(
-                imageVector = Icons.Default.KeyboardArrowRight,
-                contentDescription = null,
+            Row(
                 modifier = Modifier
-                    .size(150.dp),
-                tint = Color(0xFF979797)
-            )
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ){
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+
         }
 
         Button(

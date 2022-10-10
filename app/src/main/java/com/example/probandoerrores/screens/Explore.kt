@@ -90,7 +90,7 @@ fun ExploreUIBodyContent(navController: NavController){
             .padding(top = 45.dp, bottom = 45.dp)
     ){
         ChipSection(chips = listOf("Categories", "Explore", "New Arrivals", "Categories", "Explore", "New Arrivals"))
-        ListProductsGrid()
+//        ListProductsGrid()
     }
 }
 

@@ -1,12 +1,15 @@
 package com.example.probandoerrores
 
 import android.media.Rating
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -21,6 +24,8 @@ import com.example.probandoerrores.navigation.AppScreens
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 
 @Composable
 internal fun ProductsTopAppBar(navController: NavController) {
@@ -54,14 +59,14 @@ internal fun ProductsTopAppBar(navController: NavController) {
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
-                painter = painterResource(id = R.drawable.qr_code_scanner),
+                painter = painterResource(id = R.drawable.fullscreen_exit),
                 contentDescription = "Cart",
                 tint = Color(0xFF000000)
             )
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
-                imageVector = Icons.Filled.ShoppingCart,
+                painter = painterResource(id = R.drawable.shopping_bag),
                 contentDescription = "Cart",
                 tint = Color(0xFF000000)
             )
@@ -104,8 +109,7 @@ fun DetailProductBodyContent(){
             )
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
+                    .fillMaxWidth(),
                 horizontalAlignment = Alignment.End
             ) {
                 ToggleButtonFavorites()
@@ -120,21 +124,16 @@ fun DetailProductBodyContent(){
                 text = "Product Description",
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(10.dp),
-                color = Color(0xFF000000)
+                color = Color(0xFF000000),
+                fontSize = 12.sp
             )
-            Column(
+            Row(
                     modifier = Modifier
                         .fillMaxWidth()
-//                    .padding(20.dp)
+                        .padding(top = 8.dp),
+                horizontalArrangement = Arrangement.End
                     ) {
                 RatingBar(rating = 4)
-            }
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-//                horizontalAlignment = Alignment.End
-            ) {
                 Text(
                     text = "(24 Review)",
                     style = MaterialTheme.typography.body1,
@@ -142,11 +141,40 @@ fun DetailProductBodyContent(){
                     color = Color(0xFF000000)
                 )
             }
-
-
         }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+        ){
+            Text(
+                text = "300$",
+                color = Color(0xFFFF5722),
+                modifier = Modifier.padding(10.dp)
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+        ){
+            Text(
+                text = "Color",
+                modifier = Modifier.padding(10.dp),
+                color = Color(0xFF000000),
+                fontWeight = FontWeight.Bold
+            )
+        }
+        Row {
+            MaterialsButton()
+        }
+        Row {
+            DimensionsButton()
+        }
+        Row(
 
-
+        ) {
+            AddToCartButton()
+            BuyNowButton()
+        }
     }
 }
 
@@ -178,11 +206,7 @@ fun RatingBar(
     }
     
     Row(
-//        modifier = Modifier
-//            .fillMaxSize(),
-//        verticalAlignment = Alignment.CenterVertically,
-//        horizontalArrangement = Arrangement.Center
-
+        modifier = Modifier.padding(top = 2.dp)
     ) {
         for (i in 1..5){
             Icon(
@@ -197,8 +221,142 @@ fun RatingBar(
                     .clickable {
                         ratingState = i
                     }
+                    .size(17.dp)
+
             )
         }
+    }
+}
+
+@Composable
+fun ColorProduct(){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+    ){
+        Text(
+            text = "Color",
+            modifier = Modifier.padding(10.dp),
+            color = Color(0xFF000000),
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
+
+@Composable
+fun MaterialsButton(){
+    Button(
+        onClick = { /*TODO*/ },
+        shape = RoundedCornerShape(50),
+        modifier = Modifier
+            .fillMaxWidth()
+            .size(80.dp)
+            .padding(top = 25.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFFFAF7F7)
+        )
+    ) {
+        Row(
+        ) {
+            Row(
+            ){
+                Text(
+                    text = "Materials",
+                    color = Color(0xFF000000),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun DimensionsButton(){
+    Button(
+        onClick = { /*TODO*/ },
+        shape = RoundedCornerShape(50),
+        modifier = Modifier
+            .fillMaxWidth()
+            .size(80.dp)
+            .padding(top = 25.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFFFAF7F7)
+        )
+    ) {
+        Row(
+        ) {
+            Row(
+            ){
+                Text(
+                    text = "Dimensions",
+                    color = Color(0xFF000000),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Icon(
+                    imageVector = Icons.Default.KeyboardArrowRight,
+                    contentDescription = null,
+                    tint = Color(0xFF979797)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun AddToCartButton(){
+    OutlinedButton(
+        onClick = { /*TODO*/ },
+        shape = RoundedCornerShape(50),
+        border = BorderStroke(1.dp, Color(0xFFFF5722)),
+        modifier = Modifier
+            .padding(10.dp, top = 75.dp)
+            .size(width = 125.dp, height = 50.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFFFFFFFF)
+        )
+    ) {
+        Text(
+            text = "Add to Cart",
+            color = Color(0xFFFF5722)
+        )
+    }
+}
+
+@Composable
+fun BuyNowButton(){
+    Button(
+        onClick = { /*TODO*/ },
+        shape = RoundedCornerShape(50),
+        modifier = Modifier
+            .padding(10.dp, top = 75.dp)
+            .size(width = 125.dp, height = 50.dp),
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFFFF5722)
+        )
+    ) {
+        Text(
+            text = "Buy Now",
+            color = Color(0xFFFFFFFF)
+        )
     }
 }
 
@@ -207,3 +365,4 @@ fun RatingBar(
 fun DetailProductPreview() {
     DetailProductBodyContent()
 }
+

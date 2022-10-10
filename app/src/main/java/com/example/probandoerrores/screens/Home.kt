@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.probandoerrores.Product
 import com.example.probandoerrores.Products
 import com.example.probandoerrores.R
 import com.example.probandoerrores.getAllCategories
@@ -74,25 +75,26 @@ internal fun CenterAlignedTopAppBar() {
     }
 }
 
-private val listProducts = listOf(
-    Products("Footstool", R.drawable.footstool, 2999.99),
-    Products("Table bentley", R.drawable.tablebentley, 849.50),
-    Products("Astrid table", R.drawable.astridtable, 1500.00),
-    Products("Sofa", R.drawable.sofablanco, 900.00),
-    Products("Log Island Sofa", R.drawable.logislandsofa, 2999.99),
-    Products("Ous bourne", R.drawable.ousbourne, 849.50),
-    Products("Bardot table", R.drawable.bardottable, 1500.00),
-    Products("Ringo Storage", R.drawable.ringostorage, 900.00)
-)
+//private val listProducts = listOf(
+//    Products(1,"Footstool", R.drawable.footstool, 2999.99),
+//    Products(2,"Table bentley", R.drawable.tablebentley, 849.50),
+//    Products(3,"Astrid table", R.drawable.astridtable, 1500.00),
+//    Products(4,"Sofa", R.drawable.sofablanco, 900.00),
+//    Products(5,"Log Island Sofa", R.drawable.logislandsofa, 2999.99),
+//    Products(6,"Ous bourne", R.drawable.ousbourne, 849.50),
+//    Products(7,"Bardot table", R.drawable.bardottable, 1500.00),
+//    Products(8,"Ringo Storage", R.drawable.ringostorage, 900.00)
+//)
 
 @Composable
-fun ProductStyle(product: Products){
+fun ProductStyle(product: Products, navigateToProduct: (Products) -> Unit){
     Card(
         shape = RoundedCornerShape(10.dp),
         elevation = 8.dp,
         modifier = Modifier
             .height(250.dp)
-            .width(150.dp),
+            .width(150.dp)
+            .clickable{navigateToProduct(product)},
         backgroundColor = Color(0xFFF8F4F4)
     ) {
         Column(
@@ -108,14 +110,13 @@ fun ProductStyle(product: Products){
                     .height(150.dp)
                     .clip(RoundedCornerShape(10.dp))
             )
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Text(
                 text = product.title,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            Spacer(modifier = Modifier.height(10.dp))
             Text(
                 text = "$${product.price}",
                 fontSize = 16.sp,
@@ -127,16 +128,23 @@ fun ProductStyle(product: Products){
 }
 
 @Composable
-fun HomeUI(navController:NavController) {
+fun HomeUI(navController: NavController) {
     Scaffold() {
         CenterAlignedTopAppBar()
-        HomeUIBodyContent(navController)
+        HomeUIBodyContent(navigateToProduct = { product ->
+            navController.navigate("product/${product.id}")
+        })
     }
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeUIBodyContent(navController: NavController){
+fun HomeUIBodyContent(navigateToProduct: (Products) -> Unit){
+
+    val productos = remember {
+        Product.products
+    }
+
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(20.dp),
@@ -163,14 +171,19 @@ fun HomeUIBodyContent(navController: NavController){
 //            Column() {
 //                ListProductsGrid()
 //            }
+
+
+        }
+        items(productos.size) { index ->
+            ProductStyle(product = productos[index], navigateToProduct = navigateToProduct)
         }
 
-        items(
-            listProducts,
-
-            ) {
-            ProductStyle(product = it)
-        }
+//        items(
+//            listProducts,
+//
+//            ) {
+//            ProductStyle(product = it)
+//        }
 
     }
 }
@@ -214,22 +227,22 @@ fun ChipSection(
 }
 
 
-@ExperimentalFoundationApi
-@Composable
-fun ListProductsGrid(){
-    LazyVerticalGrid(
-        cells = GridCells.Fixed(2),
-        contentPadding = PaddingValues(12.dp),
-        verticalArrangement = Arrangement.spacedBy(25.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)
-    ) {
-        items(listProducts) {
-            ProductStyle(product = it)
-        }
-    }
-}
+//@ExperimentalFoundationApi
+//@Composable
+//fun ListProductsGrid(){
+//    LazyVerticalGrid(
+//        cells = GridCells.Fixed(2),
+//        contentPadding = PaddingValues(12.dp),
+//        verticalArrangement = Arrangement.spacedBy(25.dp),
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .padding(10.dp)
+//    ) {
+//        items(listProducts) {
+//            ProductStyle(product = it)
+//        }
+//    }
+//}
 
 //@Composable
 //@Preview

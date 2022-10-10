@@ -82,7 +82,7 @@ fun FavoritesScreen() {
             .fillMaxWidth()
             .padding(top = 45.dp, bottom = 45.dp)
             ) {
-        ListProductsGrid()
+//        ListProductsGrid()
     }
 }
 @Composable
