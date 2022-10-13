@@ -75,26 +75,15 @@ internal fun CenterAlignedTopAppBar() {
     }
 }
 
-//private val listProducts = listOf(
-//    Products(1,"Footstool", R.drawable.footstool, 2999.99),
-//    Products(2,"Table bentley", R.drawable.tablebentley, 849.50),
-//    Products(3,"Astrid table", R.drawable.astridtable, 1500.00),
-//    Products(4,"Sofa", R.drawable.sofablanco, 900.00),
-//    Products(5,"Log Island Sofa", R.drawable.logislandsofa, 2999.99),
-//    Products(6,"Ous bourne", R.drawable.ousbourne, 849.50),
-//    Products(7,"Bardot table", R.drawable.bardottable, 1500.00),
-//    Products(8,"Ringo Storage", R.drawable.ringostorage, 900.00)
-//)
-
 @Composable
-fun ProductStyle(product: Products, navigateToProduct: (Products) -> Unit){
+fun ProductStyle(product: Products, navController: NavController){
     Card(
         shape = RoundedCornerShape(10.dp),
         elevation = 8.dp,
         modifier = Modifier
             .height(250.dp)
             .width(150.dp)
-            .clickable{navigateToProduct(product)},
+            .clickable{ navController.navigate("detail_product") },
         backgroundColor = Color(0xFFF8F4F4)
     ) {
         Column(
@@ -131,15 +120,12 @@ fun ProductStyle(product: Products, navigateToProduct: (Products) -> Unit){
 fun HomeUI(navController: NavController) {
     Scaffold() {
         CenterAlignedTopAppBar()
-        HomeUIBodyContent(navigateToProduct = { product ->
-            navController.navigate("product/${product.id}")
-        })
+        HomeUIBodyContent(navController)
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeUIBodyContent(navigateToProduct: (Products) -> Unit){
+fun HomeUIBodyContent(navController: NavController){
 
     val productos = remember {
         Product.products
@@ -175,7 +161,7 @@ fun HomeUIBodyContent(navigateToProduct: (Products) -> Unit){
 
         }
         items(productos.size) { index ->
-            ProductStyle(product = productos[index], navigateToProduct = navigateToProduct)
+            ProductStyle(product = productos[index], navController = navController)
         }
 
 //        items(
@@ -225,7 +211,6 @@ fun ChipSection(
         }
     }
 }
-
 
 //@ExperimentalFoundationApi
 //@Composable

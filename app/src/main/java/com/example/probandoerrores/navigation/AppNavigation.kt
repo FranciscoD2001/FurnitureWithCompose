@@ -4,10 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.probandoerrores.DetailProductUI
-import com.example.probandoerrores.MainScreen
-import com.example.probandoerrores.ScreenTutorial
-import com.example.probandoerrores.SplashScreen
+import com.example.probandoerrores.*
 import com.example.probandoerrores.logins.CreateAccountUI
 import com.example.probandoerrores.logins.ForgetPasswordUI
 import com.example.probandoerrores.logins.LoginUI
@@ -40,6 +37,9 @@ fun AppNavigation(){
         }
         composable(AppScreens.DetailProduct.route){
             DetailProductUI(navController)
+        }
+        composable(AppScreens.Orders.route){
+            OrdersUI()
         }
     }
 }

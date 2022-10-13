@@ -1,9 +1,7 @@
 package com.example.probandoerrores
 
 import android.media.Rating
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -24,6 +22,9 @@ import com.example.probandoerrores.navigation.AppScreens
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
@@ -163,6 +164,90 @@ fun DetailProductBodyContent(){
                 fontWeight = FontWeight.Bold
             )
         }
+        Row{
+            Card(
+                modifier = Modifier
+                    .size(width = 100.dp, height = 50.dp),
+                shape = RoundedCornerShape(50.dp),
+                backgroundColor = Color(0xFFDBD9D9)
+            ) {
+                val boxFocusRequester = remember { FocusRequester() }
+                var color by remember { mutableStateOf(Color(0xFFFF5722)) }
+//                Box(
+//                    Modifier
+//                        .size(25.dp)
+//                        .clickable { boxFocusRequester.requestFocus() }
+//                        .border(2.dp, color)
+//                        .focusRequester(boxFocusRequester)
+//                        .onFocusChanged {
+//                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+//                        }
+//                        .focusable(),
+//                )
+                Button(
+                    onClick = { boxFocusRequester.requestFocus() },
+                    shape = RoundedCornerShape(50),
+                    modifier = Modifier
+//                        .clickable { boxFocusRequester.requestFocus() }
+                        .border(2.dp, color)
+                        .focusRequester(boxFocusRequester)
+                        .onFocusChanged {
+                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+                        }
+                        .size(width = 10.dp, height = 10.dp)
+                        .focusable(),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF062A4E))
+                ) {}
+//                Box(
+//                    Modifier
+//                        .size(25.dp)
+//                        .clickable { boxFocusRequester.requestFocus() }
+//                        .border(2.dp, color)
+//                        .focusRequester(boxFocusRequester)
+//                        .onFocusChanged {
+//                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+//                        }
+//                        .focusable(),
+////                    color = Color(0xFF9E6C3F)
+//                )
+//                Box(
+//                    Modifier
+//                        .size(25.dp)
+//                        .clickable { boxFocusRequester.requestFocus() }
+//                        .border(2.dp, color)
+//                        .focusRequester(boxFocusRequester)
+//                        .onFocusChanged {
+//                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+//                        }
+//                        .focusable(),
+////                    color = Color(0xFFEB7637)
+//                )
+//                Box(
+//                    Modifier
+//                        .size(25.dp)
+//                        .clickable { boxFocusRequester.requestFocus() }
+//                        .border(2.dp, color)
+//                        .focusRequester(boxFocusRequester)
+//                        .onFocusChanged {
+//                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+//                        }
+//                        .focusable(),
+////                    color = Color(0xFFE64961)
+//                )
+//                Box(
+//                    Modifier
+//                        .size(25.dp)
+//                        .clickable { boxFocusRequester.requestFocus() }
+//                        .border(2.dp, color)
+//                        .focusRequester(boxFocusRequester)
+//                        .onFocusChanged {
+//                            color = if (it.isFocused) Color(0xFFF0EDED) else Color(0xFFFF5722)
+//                        }
+//                        .focusable(),
+////                    color = Color(0xFF020735)
+//                )
+            }
+        }
         Row {
             MaterialsButton()
         }
@@ -234,12 +319,14 @@ fun ColorProduct(){
         modifier = Modifier
             .fillMaxWidth()
     ){
-        Text(
-            text = "Color",
-            modifier = Modifier.padding(10.dp),
-            color = Color(0xFF000000),
-            fontWeight = FontWeight.Bold
-        )
+        Card() {
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+            Button(onClick = { /*TODO*/ }) {
+                
+            }
+        }
     }
 }
 

@@ -9,4 +9,5 @@ sealed class AppScreens (val route: String){
     object ScreenTutorial: AppScreens("screen_tutorial")
     object ViewPagerSlider: AppScreens("view_pager_slider")
     object DetailProduct: AppScreens("detail_product")
+    object Orders: AppScreens("orders")
 }

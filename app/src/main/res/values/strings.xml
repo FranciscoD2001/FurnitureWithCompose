@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">probandoErrores</string>
     <string name="title_activity_screen_tutorial">ScreenTutorial</string>
+    <string name="title_activity_product_detail">ProductDetail</string>
+    <string name="title_activity_orders">Orders</string>
 </resources>

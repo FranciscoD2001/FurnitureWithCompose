@@ -43,6 +43,7 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.example.probandoerrores'
 
 }
 
@@ -73,4 +74,6 @@ dependencies {
     //noinspection GradleDependency
     implementation "androidx.compose.material:material-icons-extended:$compose_version"
 
+    //Libreria para el manejo de imagenes de coil
+//    implementation("io.coil-kt:coil-compose:2.2.2")
 }
