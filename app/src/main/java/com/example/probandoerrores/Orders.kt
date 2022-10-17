@@ -59,7 +59,8 @@ fun OrdersUIBodyContent(){
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier
             .fillMaxSize()
-            .padding(top = 15.dp)) {
+            .padding(top = 15.dp))
+        {
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(20.dp),
                 modifier = Modifier
